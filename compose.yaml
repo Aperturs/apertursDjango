@@ -1,3 +1,6 @@
+secrets:
+  secret_key:
+    external: true
 services:
   web:
     build:

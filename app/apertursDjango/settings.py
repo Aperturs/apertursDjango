@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'apertursDjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'aperturs',
+         'ENFORCE_SCHEMA': False,
+       'CLIENT': {
+            'host': 'mongodb+srv://admin:lXj99d2P8htzgwOW@cluster0.irpuyd1.mongodb.net/test?retryWrites=true&w=majority'
+        }
     }
 }
 
