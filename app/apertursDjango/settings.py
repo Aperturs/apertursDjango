@@ -12,9 +12,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+import environ
+import os
+
+env = environ.Env(
+    DEBUG=(bool,False),
+    MONGO_DB_URL=(str,"")
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -23,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fqe(mm7y_tse7gl2o-m9f)ajf!bpq=vsr$#ib23v$51%yd=0n@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG');
 
 ALLOWED_HOSTS = []
 
@@ -79,7 +88,7 @@ DATABASES = {
         'NAME': 'aperturs',
          'ENFORCE_SCHEMA': False,
        'CLIENT': {
-            'host': 'mongodb+srv://admin:lXj99d2P8htzgwOW@cluster0.irpuyd1.mongodb.net/test?retryWrites=true&w=majority'
+            'host': env("MONGO_DB_URL")
         }
     }
 }
